@@ -189,7 +189,7 @@ body {
   font-size: 14px;
   line-height: 2;
   color: #555;
-  background: #f5f7f9;
+  background: #eee;
 }
 @media (max-width: 767px) {
   body {
@@ -444,7 +444,7 @@ body {
 .header-inner {
   margin: 0 auto;
   padding: 100px 0 70px;
-  width: 700px;
+  width: calc(100% - 252px);
 }
 @media (min-width: 1600px) {
   .container .header-inner {
@@ -453,7 +453,7 @@ body {
 }
 .main-inner {
   margin: 0 auto;
-  width: 700px;
+  width: calc(100% - 252px);
 }
 @media (min-width: 1600px) {
   .container .main-inner {
@@ -467,7 +467,7 @@ body {
 .footer-inner {
   box-sizing: border-box;
   margin: 20px auto;
-  width: 700px;
+  width: calc(100% - 252px);
 }
 @media (min-width: 1600px) {
   .container .footer-inner {
@@ -1809,7 +1809,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #097778;
+  background: #ffad1a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2331,16 +2331,6 @@ pre .javascript .function {
   transform: translate(-50%, -50%);
   color: #ccc;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .busuanzi-count {
-    width: auto;
-  }
-}
-@media (max-width: 767px) {
-  .busuanzi-count {
-    width: auto;
-  }
-}
 .site-uv,
 .site-pv,
 .page-pv {
@@ -2587,7 +2577,7 @@ pre .javascript .function {
 .header {
   position: relative;
   margin: 0 auto;
-  width: 960px;
+  width: 75%;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .header {
@@ -2606,7 +2596,7 @@ pre .javascript .function {
   padding: 0;
   width: 240px;
   background: #fff;
-  box-shadow: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: initial;
 }
 @media (min-width: 1600px) {
@@ -2637,7 +2627,7 @@ pre .javascript .function {
   clear: both;
 }
 .container .main-inner {
-  width: 960px;
+  width: 75%;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
@@ -2653,10 +2643,10 @@ pre .javascript .function {
   float: right;
   box-sizing: border-box;
   padding: 40px;
-  width: 700px;
-  background: #fff;
+  width: calc(100% - 252px);
+  background: rgba(255,255,255,0.5) !important;
   min-height: 700px;
-  box-shadow: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: initial;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2679,7 +2669,7 @@ pre .javascript .function {
   float: left;
   margin-top: 300px;
   width: 240px;
-  background: #f5f7f9;
+  background: #eee;
   box-shadow: none;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2696,7 +2686,7 @@ pre .javascript .function {
   display: none;
 }
 .footer-inner {
-  width: 960px;
+  width: 75%;
   padding-left: 260px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2725,6 +2715,9 @@ pre .javascript .function {
 .sidebar-position-right .footer-inner {
   padding-left: 0;
   padding-right: 260px;
+}
+.post-block {
+  background: rgba(255,255,255,0.5) !important;
 }
 .site-brand-wrapper {
   position: relative;
@@ -2837,7 +2830,7 @@ pre .javascript .function {
   width: 240px;
   color: #555;
   background: #fff;
-  box-shadow: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   border-radius: initial;
 }
 .sidebar-inner.affix {
@@ -2957,4 +2950,29 @@ pre .javascript .function {
   .post-body {
     text-align: justify;
   }
+}
+.content-wrap {
+  padding: initial;
+  background: initial;
+  box-shadow: initial;
+  border-radius: initial;
+}
+.post-block {
+  margin-bottom: 12px;
+  background: #fff;
+  padding: 40px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+  border-radius: initial;
+}
+.posts-expand {
+  padding-top: initial;
+}
+.post-eof {
+  display: none !important;
+}
+.main {
+  padding-bottom: initial;
+}
+.footer {
+  bottom: auto;
 }
