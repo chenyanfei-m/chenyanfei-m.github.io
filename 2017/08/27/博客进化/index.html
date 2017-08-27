@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>奈良季夏</title>
+    <title>博客进化 | 奈良季夏</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="陈燕飞的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奈良季夏">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="博客生成的页面跳转还是a标签直接跳页面的,感觉弄成类似spa的那种感觉会好一些.">
+<meta name="keywords" content="blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客进化">
+<meta property="og:url" content="http://yoursite.com/2017/08/27/博客进化/index.html">
 <meta property="og:site_name" content="奈良季夏">
-<meta property="og:description" content="陈燕飞的博客">
+<meta property="og:description" content="博客生成的页面跳转还是a标签直接跳页面的,感觉弄成类似spa的那种感觉会好一些.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-26T16:13:56.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奈良季夏">
-<meta name="twitter:description" content="陈燕飞的博客">
+<meta name="twitter:title" content="博客进化">
+<meta name="twitter:description" content="博客生成的页面跳转还是a标签直接跳页面的,感觉弄成类似spa的那种感觉会好一些.">
     
 
     
@@ -211,144 +213,15 @@
 </aside>
 
             
-            <section id="main">
-    <article id="post-关于react的事件代理" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-博客进化" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
             <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/27/关于react的事件代理/">关于react的事件代理</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/27/关于react的事件代理/">
-            <time datetime="2017-08-27T12:06:01.000Z" itemprop="datePublished">2017-08-27</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/react/">react</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么<br>所以写了个列表研究下react的事件绑定<br>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const listData = [1, 2, 3, 4, 5]</div><div class="line">const liList = listData.map(( ele, index ) =&gt;</div><div class="line">  &lt;li key=&#123;index&#125; onClick=&#123;() =&gt; console.log( index )&#125;&gt;</div><div class="line">    &#123;ele&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">)</div><div class="line">return (</div><div class="line">  &lt;ul&gt;&#123;liList&#125;&lt;/ul&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>打开chrome发现 li 元素上绑定有两个事件<br><img src="./chromeClick.png"><br><img src="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png" alt=""><br>将两个绑定的事件remove后再点击 li 元素，发现还是能console出相应的index=。=<br><br>然后网上翻了下，找到了原因:<br><strong>jsx不会真正的绑定事件到每一个具体的元素上，而是采用事件代理的模式：在根节点document上为每种事件添加唯一的listener，然后通过事件的target找到真实的触发元素，这样从触发元素到顶层节点之间的所有节点如果有绑定这个事件，react都会触发相应的事件处理函数，这就是所谓的react模拟事件系统</strong><br><br>随后在chrome中删除了body上绑定的点击事件后果然不再console出index了。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6up4a3p0003iwhrk0xedtsb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/08/27/关于react的事件代理/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/08/27/关于react的事件代理/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-博客进化" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/27/博客进化/">博客进化</a>
+        <h1 class="article-title" itemprop="name">
+            博客进化
         </h1>
     
 
@@ -463,135 +336,39 @@
         </footer>
     </div>
     
-</article>
-
-
-
-    <article id="post-今天开始" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
         
-        
-            <header class="article-header">
-                
+<nav id="article-nav">
     
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/08/20/今天开始/">今天开始</a>
-        </h1>
-    
-
+        <a href="/2017/08/27/关于react的事件代理/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
                 
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/20/今天开始/">
-            <time datetime="2017-08-20T10:08:07.000Z" itemprop="datePublished">2017-08-20</time>
+                    关于react的事件代理
+                
+            </div>
         </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/start/">start</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>今天是17年8月20日，原来一直有打算搭个博客来记录一些东西，不过由于拖延癌的原因直到现在才弄完，虽然弄完也只花了几个钟头2333，总之，加油吧 自己</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/08/20/今天开始/" data-id="cj6up4a3d0000iwhrdxwnwldd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
     
-        <a href="http://yoursite.com/2017/08/20/今天开始/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/08/20/今天开始/">评论</a>
     
+        <a href="/2017/08/20/今天开始/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">今天开始</div>
+        </a>
+    
+</nav>
 
-        </footer>
-    </div>
+
     
 </article>
 
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
 
 </section>
             
@@ -729,11 +506,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2017/08/27/博客进化/';
+        
+        this.page.identifier = '博客进化';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/count.js';
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
