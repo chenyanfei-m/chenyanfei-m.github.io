@@ -1536,10 +1536,14 @@ pre .javascript .function {
   -webkit-box-shadow: 2px 2px 3px #ddd;
   box-shadow: 2px 2px 3px #ddd;
   border-radius: 5px;
+  font-size: 1em;
 }
 #wrap {
   background: #f1f1f1;
 }
 .widget a:hover {
   text-decoration: none;
+}
+#subtitle {
+  color: #f0f8ff;
 }
