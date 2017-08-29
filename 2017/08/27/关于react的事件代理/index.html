@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
-<html lang=zh>
+<html>
 <head>
-    <meta charset="utf-8">
-    
-    <title>关于react的事件代理 | 奈良季夏</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么所以写了个列表研究下react的事件绑定代码如下123456789const listData = [1, 2, 3, 4, 5]const liList = listData.map(( ele, index ) =&amp;gt;  &amp;lt;li key=&amp;#123;index&amp;#125; onClick=&amp;#1">
+  <meta charset="utf-8">
+  
+  <title>关于react的事件代理 | 奈良季夏</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么所以写了个列表研究下react的事件绑定代码如下123456789const listData = [1, 2, 3, 4, 5]const liList = listData.map(( ele, index ) =&amp;gt;  &amp;lt;li key=&amp;#123;index&amp;#125; onClick=&amp;#1">
 <meta name="keywords" content="react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于react的事件代理">
@@ -19,545 +20,295 @@
 <meta name="twitter:title" content="关于react的事件代理">
 <meta name="twitter:description" content="今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么所以写了个列表研究下react的事件绑定代码如下123456789const listData = [1, 2, 3, 4, 5]const liList = listData.map(( ele, index ) =&amp;gt;  &amp;lt;li key=&amp;#123;index&amp;#125; onClick=&amp;#1">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png">
-    
-
-    
-        <link rel="alternate" href="/" title="奈良季夏" type="application/atom+xml" />
-    
-
-    
-        <link rel="icon" href="/css/images/ico48Transparent.ico" />
-    
-
-    <script src='libs/jquery/2.1.3/jquery.min.js'></script>
-	<script src='libs/progress/nprogress.js'></script>
-	<link rel='stylesheet' href='libs/progress/nprogress.css'/>
-	<script src='libs/turbolinks/turbolinks.js'></script>
-	<script>
-		$(document).on('turbolinks:click', function() {
-  			NProgress.start();
-		});
-		$(document).on('turbolinks:render', function() {
-  			NProgress.done();
-  			NProgress.remove();
-		});
-	</script>
-
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-    
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-        <script type="text/javascript">
-(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105580424-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-    
-    
-    
-
-
+  
+    <link rel="alternative" href="/atom.xml" title="奈良季夏" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
 </head>
-
 <body>
-    <div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">奈良季夏</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/.">主页</a>
-                
-                    <a class="main-nav-link" href="/archives">归档</a>
-                
-                    <a class="main-nav-link" href="/categories">类别</a>
-                
-                    <a class="main-nav-link" href="/tags">标签</a>
-                
-                    <a class="main-nav-link" href="/about">关于</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/headLogo.png" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
-
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">奈良季夏</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A day is a miniature of eternity</a>
+        </h2>
+      
     </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
-
-</div>
-        </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="yoursite.com">
+        </form>
+      </div>
     </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/.">主页</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">归档</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">类别</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">标签</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">关于</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-    </div>
-
-                </td>
-            </tr>
-        </table>
-    </div>
+  </div>
 </header>
-
-        <div class="outer">
-            
-                
-
-<aside id="profile">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/headLogo.png" />
-            <h2 id="name">陈二</h2>
-            <h3 id="title">Web开发者</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
-            <a id="follow" target="_blank" href="https://github.com/chenyanfei-m">关注我</a>
-        </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                4
-                <span>文章</span>
-            </div>
-            <div class="article-info-block">
-                4
-                <span>标签</span>
-            </div>
-        </div>
-        
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/chenyanfei-m" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="twitter" class=tooltip>
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="facebook" class=tooltip>
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="dribbble" class=tooltip>
-                            <i class="fa fa-dribbble"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="/" target="_blank" title="rss" class=tooltip>
-                            <i class="fa fa-rss"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
-        </div>
-        
-    </div>
-</aside>
-
-            
-            <section id="main"><article id="post-关于react的事件代理" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
+    <div class="outer">
+      <section id="main"><article id="post-关于react的事件代理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/27/关于react的事件代理/" class="article-date">
+  <time datetime="2017-08-27T12:06:01.000Z" itemprop="datePublished">2017-08-27</time>
+</a>
     
-        <h1 class="article-title" itemprop="name">
-            关于react的事件代理
-        </h1>
+  </div>
+  <div class="article-inner">
     
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/08/27/关于react的事件代理/">
-            <time datetime="2017-08-27T12:06:01.000Z" itemprop="datePublished">2017-08-27</time>
-        </a>
-    </div>
-
-
-                        
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/react/">react</a>
-    </div>
-
-                    </div>
-                
-            </header>
+    
+      <header class="article-header">
         
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么<br>所以写了个列表研究下react的事件绑定<br>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const listData = [1, 2, 3, 4, 5]</div><div class="line">const liList = listData.map(( ele, index ) =&gt;</div><div class="line">  &lt;li key=&#123;index&#125; onClick=&#123;() =&gt; console.log( index )&#125;&gt;</div><div class="line">    &#123;ele&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">)</div><div class="line">return (</div><div class="line">  &lt;ul&gt;&#123;liList&#125;&lt;/ul&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+  
+    <h1 class="article-title" itemprop="name">
+      关于react的事件代理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么<br>所以写了个列表研究下react的事件绑定<br>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const listData = [1, 2, 3, 4, 5]</div><div class="line">const liList = listData.map(( ele, index ) =&gt;</div><div class="line">  &lt;li key=&#123;index&#125; onClick=&#123;() =&gt; console.log( index )&#125;&gt;</div><div class="line">    &#123;ele&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">)</div><div class="line">return (</div><div class="line">  &lt;ul&gt;&#123;liList&#125;&lt;/ul&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
 <p>打开chrome发现 li 元素上绑定有两个事件<br><img src="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png" alt=""><br>将两个绑定的事件remove后再点击 li 元素，发现还是能console出相应的index=。=<br><br>然后网上翻了下，找到了原因:<br><strong>jsx不会真正的绑定事件到每一个具体的元素上，而是采用事件代理的模式：在根节点document上为每种事件添加唯一的listener，然后通过事件的target找到真实的触发元素，这样从触发元素到顶层节点之间的所有节点如果有绑定这个事件，react都会触发相应的事件处理函数，这就是所谓的react模拟事件系统</strong><br><br>随后在chrome中删除了body上绑定的点击事件后果然不再console出index了。</p>
 
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6xg9s7t0001p8hr1l36o2if" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/08/27/关于react的事件代理/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/08/27/关于react的事件代理/">评论</a>
-    
-
-        </footer>
+      
     </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6xtyp590003zshrb8tn6mpb" class="article-share-link" data-share="baidu" data-title="关于react的事件代理">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2017/08/27/关于react的事件代理/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
     
-        
 <nav id="article-nav">
-    
-        <a href="/2017/08/29/react-antd-mobile修改主题样式的问题/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    解决react+antd-mobile修改主题样式的问题
-                
-            </div>
-        </a>
-    
-    
-        <a href="/2017/08/27/博客进化/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">博客进化</div>
-        </a>
-    
+  
+    <a href="/2017/08/29/react-antd-mobile修改主题样式的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          解决react+antd-mobile修改主题样式的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/27/博客进化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">博客进化</div>
+    </a>
+  
 </nav>
 
-
-    
+  
 </article>
 
 
-    
-    
-        <section id="comments"><script>
-</script></section>
-    
-
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/08/27/关于react的事件代理/" data-title="关于react的事件代理" data-url="http://yoursite.com/2017/08/27/关于react的事件代理/"></div>
+  </section>
 </section>
-            
-                
-<aside id="sidebar">
-   
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">最新文章</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/08/29/react-antd-mobile修改主题样式的问题/" class="thumbnail">
+      
+      <aside id="sidebar">
+  
     
+  
     
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/29/react-antd-mobile修改主题样式的问题/" class="title">解决react+antd-mobile修改主题样式的问题</a></p>
-                            <p class="item-date"><time datetime="2017-08-29T07:53:33.000Z" itemprop="datePublished">2017-08-29</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/08/27/关于react的事件代理/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/27/关于react的事件代理/" class="title">关于react的事件代理</a></p>
-                            <p class="item-date"><time datetime="2017-08-27T12:06:01.000Z" itemprop="datePublished">2017-08-27</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/08/27/博客进化/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/27/博客进化/" class="title">博客进化</a></p>
-                            <p class="item-date"><time datetime="2017-08-26T16:05:45.000Z" itemprop="datePublished">2017-08-27</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/08/20/今天开始/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/08/20/今天开始/" class="title">今天开始</a></p>
-                            <p class="item-date"><time datetime="2017-08-20T10:08:07.000Z" itemprop="datePublished">2017-08-20</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/antd-mobile/">antd-mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/">start</a><span class="tag-list-count">1</span></li></ul>
     </div>
+  </div>
 
+  
     
-        
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li></ul>
-        </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/antd-mobile/" style="font-size: 10px;">antd-mobile</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/react/" style="font-size: 20px;">react</a> <a href="/tags/start/" style="font-size: 10px;">start</a>
     </div>
+  </div>
 
+  
     
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">标签</h3>
-        <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/antd-mobile/">antd-mobile</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/start/">start</a><span class="tag-list-count">1</span></li></ul>
-        </div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li></ul>
     </div>
+  </div>
 
+  
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">标签云</h3>
-        <div class="widget tagcloud">
-            <a href="/tags/antd-mobile/" style="font-size: 10px;">antd-mobile</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/react/" style="font-size: 20px;">react</a> <a href="/tags/start/" style="font-size: 10px;">start</a>
-        </div>
-    </div>
-
-    
+          <li>
+            <a href="/2017/08/29/react-antd-mobile修改主题样式的问题/">解决react+antd-mobile修改主题样式的问题</a>
+          </li>
         
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
+          <li>
+            <a href="/2017/08/27/关于react的事件代理/">关于react的事件代理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/27/博客进化/">博客进化</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/20/今天开始/">今天开始</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
 
-
+  
     
-    <div id="toTop" class="fa fa-angle-up"></div>
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
+          </li>
+        
+          <li>
+            <a href="http://reqianduan.com" target="_blank">热前端</a>
+          </li>
+        
+          <li>
+            <a href="http://yuancheng.work" target="_blank">远程.work</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-
-            
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2017 妫乙<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-        </div>
+      
     </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 妫乙<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
 </footer>
-        
-    <script>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
+<script src="/js/script.js"></script>
 
-    </div>
+</div>
 </body>
 </html>
