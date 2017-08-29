@@ -13,13 +13,12 @@
 <meta property="og:site_name" content="奈良季夏">
 <meta property="og:description" content="今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么所以写了个列表研究下react的事件绑定代码如下123456789const listData = [1, 2, 3, 4, 5]const liList = listData.map(( ele, index ) =&amp;gt;  &amp;lt;li key=&amp;#123;index&amp;#125; onClick=&amp;#1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2017/08/27/关于react的事件代理/chromeClick.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png">
-<meta property="og:updated_time" content="2017-08-27T14:50:26.108Z">
+<meta property="og:updated_time" content="2017-08-29T10:13:26.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于react的事件代理">
 <meta name="twitter:description" content="今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么所以写了个列表研究下react的事件绑定代码如下123456789const listData = [1, 2, 3, 4, 5]const liList = listData.map(( ele, index ) =&amp;gt;  &amp;lt;li key=&amp;#123;index&amp;#125; onClick=&amp;#1">
-<meta name="twitter:image" content="http://yoursite.com/2017/08/27/关于react的事件代理/chromeClick.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png">
     
 
     
@@ -30,16 +29,26 @@
         <link rel="icon" href="/css/images/ico48Transparent.ico" />
     
 
+    <script src='libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='libs/progress/nprogress.js'></script>
+	<link rel='stylesheet' href='libs/progress/nprogress.css'/>
+	<script src='libs/turbolinks/turbolinks.js'></script>
+	<script>
+		$(document).on('turbolinks:click', function() {
+  			NProgress.start();
+		});
+		$(document).on('turbolinks:render', function() {
+  			NProgress.done();
+  			NProgress.remove();
+		});
+	</script>
+
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/libs/open-sans/styles.css">
     <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
     
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
         <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
@@ -266,7 +275,7 @@ ga('send', 'pageview');
         
             
             <p>今天在写react列表的时候在想，我们给每个列表元素绑定事件,如果元素很多不就造成浪费了么<br>所以写了个列表研究下react的事件绑定<br>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const listData = [1, 2, 3, 4, 5]</div><div class="line">const liList = listData.map(( ele, index ) =&gt;</div><div class="line">  &lt;li key=&#123;index&#125; onClick=&#123;() =&gt; console.log( index )&#125;&gt;</div><div class="line">    &#123;ele&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">)</div><div class="line">return (</div><div class="line">  &lt;ul&gt;&#123;liList&#125;&lt;/ul&gt;</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>打开chrome发现 li 元素上绑定有两个事件<br><img src="./chromeClick.png"><br><img src="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png" alt=""><br>将两个绑定的事件remove后再点击 li 元素，发现还是能console出相应的index=。=<br><br>然后网上翻了下，找到了原因:<br><strong>jsx不会真正的绑定事件到每一个具体的元素上，而是采用事件代理的模式：在根节点document上为每种事件添加唯一的listener，然后通过事件的target找到真实的触发元素，这样从触发元素到顶层节点之间的所有节点如果有绑定这个事件，react都会触发相应的事件处理函数，这就是所谓的react模拟事件系统</strong><br><br>随后在chrome中删除了body上绑定的点击事件后果然不再console出index了。</p>
+<p>打开chrome发现 li 元素上绑定有两个事件<br><img src="https://raw.githubusercontent.com/chenyanfei-m/blogImg/master/react-chromeClick.png" alt=""><br>将两个绑定的事件remove后再点击 li 元素，发现还是能console出相应的index=。=<br><br>然后网上翻了下，找到了原因:<br><strong>jsx不会真正的绑定事件到每一个具体的元素上，而是采用事件代理的模式：在根节点document上为每种事件添加唯一的listener，然后通过事件的target找到真实的触发元素，这样从触发元素到顶层节点之间的所有节点如果有绑定这个事件，react都会触发相应的事件处理函数，这就是所谓的react模拟事件系统</strong><br><br>随后在chrome中删除了body上绑定的点击事件后果然不再console出index了。</p>
 
         
         </div>
@@ -277,7 +286,7 @@ ga('send', 'pageview');
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6xd3mh10003g0hrgzb0w67x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6xfxesb0003x4hrdv9ilfhv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -555,16 +564,6 @@ ga('send', 'pageview');
 
 
 
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
     
     
         <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
