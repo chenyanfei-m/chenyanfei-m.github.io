@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: start | 奈良季夏</title>
+    <title>解决react+antd-mobile修改主题样式的问题 | 奈良季夏</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="陈燕飞的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奈良季夏">
-<meta property="og:url" content="http://yoursite.com/tags/start/index.html">
+    <meta name="description" content="方法为通过less-loader的modifyVars来修改原来的默认less，需要安装style-loader，css-loader，less-loader，postcss-loader，如报错没有找到某些模块，再自行安装相应模块  修改 项目根目录/node_modules/react-scripts/config/webpack.config.dev.js文件  在代码var path =">
+<meta name="keywords" content="antd-mobile,react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决react+antd-mobile修改主题样式的问题">
+<meta property="og:url" content="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/index.html">
 <meta property="og:site_name" content="奈良季夏">
-<meta property="og:description" content="陈燕飞的博客">
+<meta property="og:description" content="方法为通过less-loader的modifyVars来修改原来的默认less，需要安装style-loader，css-loader，less-loader，postcss-loader，如报错没有找到某些模块，再自行安装相应模块  修改 项目根目录/node_modules/react-scripts/config/webpack.config.dev.js文件  在代码var path =">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-29T08:41:45.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奈良季夏">
-<meta name="twitter:description" content="陈燕飞的博客">
+<meta name="twitter:title" content="解决react+antd-mobile修改主题样式的问题">
+<meta name="twitter:description" content="方法为通过less-loader的modifyVars来修改原来的默认less，需要安装style-loader，css-loader，less-loader，postcss-loader，如报错没有找到某些模块，再自行安装相应模块  修改 项目根目录/node_modules/react-scripts/config/webpack.config.dev.js文件  在代码var path =">
     
 
     
@@ -211,45 +213,177 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#start</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-react-antd-mobile修改主题样式的问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/08/20/今天开始/">今天开始</a>
+        <h1 class="article-title" itemprop="name">
+            解决react+antd-mobile修改主题样式的问题
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/08/20/今天开始/">
-            <time datetime="2017-08-20T10:08:07.000Z" itemprop="datePublished">2017-08-20</time>
+        <a href="/2017/08/29/react-antd-mobile修改主题样式的问题/">
+            <time datetime="2017-08-29T07:53:33.000Z" itemprop="datePublished">2017-08-29</time>
         </a>
     </div>
 
 
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/start/">start</a>
+        <a class="tag-link" href="/tags/antd-mobile/">antd-mobile</a>, <a class="tag-link" href="/tags/react/">react</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>方法为通过less-loader的modifyVars来修改原来的默认less，需要安装style-loader，css-loader，less-loader，postcss-loader，如报错没有找到某些模块，再自行安装相应模块</p>
+<ol>
+<li><p>修改 项目根目录/node_modules/react-scripts/config/webpack.config.dev.js文件<br></p>
+<ul>
+<li><p>在代码<br><code>var path = require( &#39;path&#39; );</code><br>后添加代码</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var fs = require( &apos;fs&apos; )</div><div class="line">const pkgPath = path.join( process.cwd(), &apos;package.json&apos; );</div><div class="line">const getTheme = ( pkgPath ) =&gt; &#123;</div><div class="line">if ( fs.existsSync( pkgPath ) ) &#123;</div><div class="line">    const pkg = require( pkgPath )</div><div class="line">    console.log( typeof ( pkg.theme ) )</div><div class="line">    if ( typeof ( pkg.theme ) === &apos;object&apos; &amp;&amp; pkg.theme.constructor === Object ) &#123;</div><div class="line">    return themeContent</div><div class="line">    &#125; else &#123;</div><div class="line">    const themePath = path.join( process.cwd(), pkg.theme )</div><div class="line">    const themeContent = require( themePath )()</div><div class="line">    return themeContent</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">var themeContent = JSON.stringify( getTheme( pkgPath ) ).replace( /_/g, &apos;-&apos; )</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后在exclude内添加 <code>/\.less$/</code>（注意添加逗号）</p>
+</li>
+<li>在loaders对象数组内添加（注意添加逗号）  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    test: /\.less$/,</div><div class="line">    loader: &apos;style!css!postcss!less?&#123;modifyVars:&apos; + themeContent + &apos;&#125;&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>修改根目录的package.json文件，添加代码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;theme&quot;: &quot;./theme.js&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在根目录添加theme.js文件，文件中代码如下，brand_primary为主题色，如需修改其他颜色，可进入node_modules/antd-mobile/lib/style/theme/default.less查看以作相应修改</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">module.exports = () =&gt; (&#123;</div><div class="line">    brand_primary: &apos;green&apos;,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改.balelrc内的<code>&quot;style&quot;: &quot;css&quot;</code>为<code>&quot;style&quot;: true</code></p>
+</li>
+<li><p>大功告成</p>
+</li>
+</ol>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/" data-id="cj6xcgoqc0000pohr72kj6igl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/08/27/关于react的事件代理/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">关于react的事件代理</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
 </section>
             
                 
@@ -405,11 +539,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/';
+        
+        this.page.identifier = 'react-antd-mobile修改主题样式的问题';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/count.js';
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
