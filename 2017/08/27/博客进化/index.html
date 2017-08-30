@@ -40,11 +40,14 @@ ga('send', 'pageview');
 </script>
 <!-- End Google Analytics -->
 
+                        <script src='/js/progress/nprogress.js'></script>
+                      <link rel='stylesheet' href='/js/progress/nprogress.css' />
 </head>
 <body>
 <div id="container">
   <div id="wrap">
     <header id="header">
+                     <script>var progress = NProgress.start();</script>
   <div id="banner"></div>
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -63,7 +66,7 @@ ga('send', 'pageview');
         
           <a class="main-nav-link" href="/">主页</a>
         
-          <a class="main-nav-link" href="/archives">归类</a>
+          <a class="main-nav-link" href="/archives/">归类</a>
         
       </nav>
       <nav id="sub-nav">
@@ -114,7 +117,7 @@ ga('send', 'pageview');
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/08/27/博客进化/" data-id="cj6z8kfpp00045chrafj8mslt" class="article-share-link" data-share="baidu" data-title="博客进化">分享到</a>
+        <a data-url="http://yoursite.com/2017/08/27/博客进化/" data-id="cj6zarx3d00044ghre6ogefip" class="article-share-link" data-share="baidu" data-title="博客进化">分享到</a>
       
 
       
@@ -241,7 +244,7 @@ ga('send', 'pageview');
   
     <a href="/" class="mobile-nav-link">主页</a>
   
-    <a href="/archives" class="mobile-nav-link">归类</a>
+    <a href="/archives/" class="mobile-nav-link">归类</a>
   
 </nav>
   <!-- totop start -->
@@ -278,6 +281,10 @@ ga('send', 'pageview');
                       <link rel='stylesheet' href='/js/progress/nprogress.css' />
                       <script src='/js/turbolinks/turbolinks.js'></script>
                       <script>
+                      $(window).load(function(){
+                        progress.done()
+                      })
+                        
                         $( document ).on( 'turbolinks:click', function () {
                           NProgress.start();
                         } );
