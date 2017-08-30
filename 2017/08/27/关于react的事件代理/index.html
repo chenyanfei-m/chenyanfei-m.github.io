@@ -117,7 +117,7 @@ ga('send', 'pageview');
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6xv6b2u0001oshrusj4jpcl" class="article-share-link" data-share="baidu" data-title="关于react的事件代理">分享到</a>
+        <a data-url="http://yoursite.com/2017/08/27/关于react的事件代理/" data-id="cj6ywfqzw0004pghry7pcwnpl" class="article-share-link" data-share="baidu" data-title="关于react的事件代理">分享到</a>
       
 
       
@@ -236,9 +236,6 @@ ga('send', 'pageview');
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 妫乙<br>
-      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
-      .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
     </div>
   </div>
 </footer>
@@ -256,20 +253,6 @@ ga('send', 'pageview');
 </div>
 
 <!-- totop end -->
-
-<!-- 多说公共js代码 start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"reqianduan"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共js代码 end -->
 
 
 <!-- 百度分享 start -->
@@ -309,6 +292,18 @@ var duoshuoQuery = {short_name:"reqianduan"};
 
 
 <script src="/js/script.js"></script>
+<script src='/js/progress/nprogress.js'></script>
+  <link rel='stylesheet' href='/js/progress/nprogress.css'/>
+  <script src='/js/turbolinks/turbolinks.js'></script>
+  <script>
+    $(document).on('turbolinks:click', function() {
+        NProgress.start();
+    });
+    $(document).on('turbolinks:render', function() {
+        NProgress.done();
+        NProgress.remove();
+    });
+  </script>
 
 </div>
 </body>
