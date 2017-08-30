@@ -137,7 +137,7 @@ ga('send', 'pageview');
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/" data-id="cj6ywfqzm0000pghrxqb0l3th" class="article-share-link" data-share="baidu" data-title="解决react+antd-mobile修改主题样式的问题">分享到</a>
+        <a data-url="http://yoursite.com/2017/08/29/react-antd-mobile修改主题样式的问题/" data-id="cj6ywo97h00005chr1tdzb6xd" class="article-share-link" data-share="baidu" data-title="解决react+antd-mobile修改主题样式的问题">分享到</a>
       
 
       
@@ -263,59 +263,44 @@ ga('send', 'pageview');
 <a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
 
-<!-- totop end -->
+  <!-- totop end -->
 
 
-<!-- 百度分享 start -->
+  <!-- 百度分享 start -->
+  
+    <div id="article-share-box" class="article-share-box">
+      <div id="bdshare" class="bdsharebuttonbox article-share-links">
+        <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+        <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+        <a class="article-share-more" data-cmd="more" title="更多"></a>
+      </div>
+    </div>
+    
+      <!-- 百度分享 end -->
 
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
-    }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- 百度分享 end -->
+      
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+          <script src="/fancybox/jquery.fancybox.pack.js"></script>
+            
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-<script src="/js/script.js"></script>
-<script src='/js/progress/nprogress.js'></script>
-  <link rel='stylesheet' href='/js/progress/nprogress.css'/>
-  <script src='/js/turbolinks/turbolinks.js'></script>
-  <script>
-    $(document).on('turbolinks:click', function() {
-        NProgress.start();
-    });
-    $(document).on('turbolinks:render', function() {
-        NProgress.done();
-        NProgress.remove();
-    });
-  </script>
-
+              
+                    <script src="/js/script.js"></script>
+                      <script src='/js/progress/nprogress.js'></script>
+                      <link rel='stylesheet' href='/js/progress/nprogress.css' />
+                      <script src='/js/turbolinks/turbolinks.js'></script>
+                      <script>
+                        $( document ).on( 'turbolinks:click', function () {
+                          NProgress.start();
+                        } );
+                        $( document ).on( 'turbolinks:render', function () {
+                          NProgress.done();
+                          NProgress.remove();
+                        } );
+                      </script>
 </div>
 </body>
 </html>
