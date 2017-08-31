@@ -144,7 +144,7 @@ body {
 }
 .inner {
   display: inline;
-  float: left;
+  float: right;
   width: 98.33333333333333%;
   margin: 0 0.833333333333333%;
 }
@@ -185,7 +185,7 @@ body {
 @media screen and (min-width: 768px) {
   #main {
     display: inline;
-    float: left;
+    float: right;
     width: 73.33333333333333%;
     margin: 0 0.833333333333333%;
   }
@@ -448,7 +448,6 @@ body {
 }
 #main-nav {
   float: left;
-  margin-left: -15px;
 }
 .nav-icon,
 .main-nav-link {
@@ -476,7 +475,7 @@ body {
 .nav-icon {
   font-family: FontAwesome;
   text-align: center;
-  font-size: 14px;
+  font-size: 20px;
   width: 14px;
   height: 14px;
   padding: 20px 15px;
@@ -505,7 +504,9 @@ body {
 }
 #sub-nav {
   float: right;
-  margin-right: -15px;
+}
+#nav-github-link:before {
+  content: "\f09b";
 }
 #nav-rss-link:before {
   content: "\f09e";
@@ -1449,7 +1450,7 @@ pre .javascript .function {
 @media screen and (min-width: 768px) {
   #sidebar {
     display: inline;
-    float: left;
+    float: right;
     width: 23.333333333333332%;
     margin: 0 0.833333333333333%;
   }
@@ -1547,4 +1548,10 @@ pre .javascript .function {
 #subtitle {
   color: #f0f8ff;
   font-size: 19px;
+}
+#logo {
+  line-height: 44px;
+}
+#header-title {
+  margin-top: -30px;
 }
