@@ -1457,3 +1457,9 @@ em.search-keyword {
 
 .fa-user:before {
   content: "\f2c0" !important; }
+
+.fa-home:before {
+  content: "\f08a" !important; }
+
+.fa-archive:before {
+  content: "\f115" !important; }
