@@ -1463,3 +1463,6 @@ em.search-keyword {
 
 .fa-archive:before {
   content: "\f115" !important; }
+
+.readmore a:hover {
+  border-bottom: none !important; }
