@@ -1466,3 +1466,7 @@ em.search-keyword {
 
 .readmore a:hover {
   border-bottom: none !important; }
+
+#header #nav-menu a:hover {
+  background: #eee !important;
+  border-bottom: 1px solid #fff !important; }
