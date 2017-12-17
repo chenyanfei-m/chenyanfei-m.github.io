@@ -1498,8 +1498,8 @@ em.search-keyword {
   letter-spacing: 1px; }
 
 .page-navigator .current {
-  border-bottom-color: #f8f8f8 !important; }
+  border-bottom-color: #dddddd !important; }
 
 .page-navigator a:hover,
 .page-navigator span:hover {
-  border-bottom-color: #f8f8f8 !important; }
+  border-bottom-color: #dddddd !important; }
