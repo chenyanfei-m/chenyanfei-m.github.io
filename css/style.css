@@ -1499,3 +1499,7 @@ em.search-keyword {
 
 .page-navigator .current {
   border: none !important; }
+
+.page-navigator a:hover,
+.page-navigator span:hover {
+  border: none !important; }
