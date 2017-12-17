@@ -11,7 +11,11 @@ When setting the primary font stack, apply it to the Pure grid units along
 with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
 specific font stacks to ensure the greatest OS/browser compatibility.
 */
-html, button, input, select, textarea,
+html,
+button,
+input,
+select,
+textarea,
 .MJXc-TeX-unknown-R,
 .pure-g [class*="pure-u"] {
   /* Set your content font stack here: */
@@ -34,7 +38,8 @@ body {
   padding-right: 50px;
   padding-top: 20px; }
 
-a, button.submit {
+a,
+button.submit {
   color: #6E7173;
   text-decoration: none;
   -webkit-transition: all .1s ease-in;
@@ -42,7 +47,8 @@ a, button.submit {
   -o-transition: all .1s ease-in;
   transition: all .1s ease-in; }
 
-a:hover, a:active {
+a:hover,
+a:active {
   color: #444; }
 
 a:focus {
@@ -261,21 +267,26 @@ div {
       padding: 0.5em 0;
       margin: auto;
       display: block; }
-    .post .post-content ul, .post .post-content ol {
+    .post .post-content ul,
+    .post .post-content ol {
       border-radius: 3px;
       margin: 1em 0; }
-      .post .post-content ul ul, .post .post-content ol ul {
+      .post .post-content ul ul,
+      .post .post-content ol ul {
         margin: 0; }
-      .post .post-content ul code, .post .post-content ol code {
+      .post .post-content ul code,
+      .post .post-content ol code {
         display: inline-block;
         margin: 0 5px;
         padding: 0px 5px;
         background: #f7f8f8; }
-      .post .post-content ul a, .post .post-content ol a {
+      .post .post-content ul a,
+      .post .post-content ol a {
         color: #01579f;
         padding-bottom: 2px;
         word-break: break-all; }
-        .post .post-content ul a:hover, .post .post-content ol a:hover {
+        .post .post-content ul a:hover,
+        .post .post-content ol a:hover {
           text-decoration: underline; }
   .post .tags {
     padding-bottom: 1em; }
@@ -296,25 +307,31 @@ div {
   .page-navigator .page-number {
     display: inline-block;
     margin: 0 5px 5px 0; }
-  .page-navigator a, .page-navigator span {
+  .page-navigator a,
+  .page-navigator span {
     display: inline-block;
     height: 25px;
     line-height: 25px;
     padding: 5px 9px;
     border: 1px solid #DDD;
     text-align: center; }
-    .page-navigator a:hover, .page-navigator span:hover {
+    .page-navigator a:hover,
+    .page-navigator span:hover {
       background: #F8F8F8;
       border-bottom-color: #D26911; }
-    .page-navigator a.prev, .page-navigator span.prev {
+    .page-navigator a.prev,
+    .page-navigator span.prev {
       float: left; }
-      .page-navigator a.prev:before, .page-navigator span.prev:before {
+      .page-navigator a.prev:before,
+      .page-navigator span.prev:before {
         font-family: "FontAwesome";
         content: "\f100";
         padding-right: 0.3em; }
-    .page-navigator a.next, .page-navigator span.next {
+    .page-navigator a.next,
+    .page-navigator span.next {
       float: right; }
-      .page-navigator a.next:after, .page-navigator span.next:after {
+      .page-navigator a.next:after,
+      .page-navigator span.next:after {
         font-family: "FontAwesome";
         content: "\f101";
         padding-left: 0.3em; }
@@ -375,7 +392,8 @@ div {
   .content_container {
     padding-right: 0; } }
 
-blockquote, .stressed {
+blockquote,
+.stressed {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 2.5em 0;
@@ -383,7 +401,8 @@ blockquote, .stressed {
   color: #555;
   border-left: none; }
 
-blockquote::before, .stressed-quote::before {
+blockquote::before,
+.stressed-quote::before {
   content: "\201C";
   display: block;
   font-family: times;
@@ -395,7 +414,9 @@ blockquote::before, .stressed-quote::before {
   margin-left: -50px;
   position: absolute; }
 
-strong, b, em {
+strong,
+b,
+em {
   font-weight: bold; }
 
 pre {
@@ -471,8 +492,10 @@ pre {
   position: relative;
   margin-bottom: 30px; }
 
-#process .timeline-centered::before, #process .timeline-centered::after,
-#process .timeline-centered::before, #process .timeline-centered::after {
+#process .timeline-centered::before,
+#process .timeline-centered::after,
+#process .timeline-centered::before,
+#process .timeline-centered::after {
   content: " ";
   display: table; }
 
@@ -1470,3 +1493,9 @@ em.search-keyword {
 #header #nav-menu a:hover {
   background: #eee !important;
   border-bottom: 1px solid #fff !important; }
+
+* {
+  letter-spacing: 1px; }
+
+.page-navigator .current {
+  border: none !important; }
