@@ -1503,3 +1503,6 @@ em.search-keyword {
 .page-navigator a:hover,
 .page-navigator span:hover {
   border-bottom-color: #dddddd !important; }
+
+.line {
+  letter-spacing: 0; }
